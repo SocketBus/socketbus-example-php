@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+        <script src="http://localhost/js/socketbus.min.js"></script>
+    </head>
+    <body>
+        <h1>SocketBus Example PHP</h1>
+
+        <table>
+            <tr>
+                <td>
+                    <button onclick="emitNewFood()">Emit new food</button>
+                    <button onclick="whisperFoodStatus">Whisper Food Status</button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+<script>
+    var socketBus = SocketBus.init({
+        app_id: 's-1-J2PCu8g8sAejZeXx',
+        url: 'http://localhost:3001',
+        authEndpoint: '?method=auth'
+    });
+
+    socketBus.connect();
+
+    socketBus.getChannel('foods')
+        .listen('new-food', (data) => {
+            console.log('new-food', data)
+        })
+        .listen('food-status', (data) => {
+            console.log('food-status', data)
+        });
+
+    function emitNewFood() {
+        axios.post('?method=broadcast')
+    }
+
+    function whisperFoodStatus() {
+
+    }
+
+</script>
