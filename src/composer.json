@@ -1,0 +1,13 @@
+{
+    "name": "socketbus/socketbus-example-php",
+    "description": "Simple socketbus example usinghttps://github.com/SocketBus/socketbus-php.git",
+    "repositories": [
+        {
+            "type":"vcs",
+            "url": "https://github.com/SocketBus/socketbus-php.git"
+        }
+    ],
+    "require": {
+        "socketbus/socketbus-php": "dev-master"
+    }
+}
